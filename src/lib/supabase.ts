@@ -51,6 +51,18 @@ export const submitBusinessRegistration = async (registrationData: {
   selected_services: string[];
   description?: string;
 }) => {
+  // Check for existing registration with same email
+  const { data: existingReg } = await supabase
+    .from('business_registrations')
+    .select('id, reference_number, email')
+    .eq('email', registrationData.email.toLowerCase())
+    .maybeSingle();
+
+  if (existingReg) {
+    console.log('Registration already exists for email:', registrationData.email);
+    return existingReg;
+  }
+
   const { data, error } = await supabase
     .from('business_registrations')
     .insert(registrationData)

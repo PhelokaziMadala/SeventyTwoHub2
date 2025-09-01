@@ -41,19 +41,30 @@ export interface RegistrationResult {
  * Defines the full registration data object retrieved from localStorage.
  */
 export interface FullRegistrationData {
-    step1: { fullName: string; emailAddress: string; mobileNumber: string; };
+    step1?: { fullName: string; emailAddress: string; mobileNumber: string; };
     step2: {
+        firstName: string;
+        lastName: string;
+        gender: string;
+        emailAddress: string;
+        cellphoneNumber: string;
         businessName: string;
-        businessCategory: string;
-        businessLocation: string;
-        businessType: string;
-        numberOfEmployees: string;
-        monthlyRevenue: string;
-        yearsInOperation: string;
-        beeeLevel: string;
+        cityTownship: string;
+        businessResidentialCorridor: string;
+        businessIndustry: string;
+        businessDescription: string;
+        consentToShare: boolean;
+        declaration: boolean;
+        businessCategory?: string;
+        businessLocation?: string;
+        businessType?: string;
+        numberOfEmployees?: string;
+        monthlyRevenue?: string;
+        yearsInOperation?: string;
+        beeeLevel?: string;
     };
     step3?: { [key: string]: File };
-    step4: {
+    step4?: {
         selectedPrograms: SelectedProgram[];
         selectedTypes: string[];
         description: string;
