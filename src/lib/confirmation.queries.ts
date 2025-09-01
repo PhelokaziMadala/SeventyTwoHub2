@@ -70,16 +70,16 @@ const uploadAllDocuments = async (registrationId: string, documents: { [key: str
 export const finalizeRegistration = async (registrationData: FullRegistrationData): Promise<RegistrationResult> => {
     // 1. Prepare data for the main submission
     const submissionData: BusinessRegistrationData = {
-        full_name: registrationData.step1?.fullName || '',
-        email: registrationData.step1?.emailAddress || '',
-        mobile_number: registrationData.step1?.mobileNumber || '',
+        full_name: registrationData.step1?.fullName || `${registrationData.step2?.firstName || ''} ${registrationData.step2?.lastName || ''}`.trim(),
+        email: registrationData.step1?.emailAddress || registrationData.step2?.emailAddress || '',
+        mobile_number: registrationData.step1?.mobileNumber || registrationData.step2?.cellphoneNumber || '',
         business_name: registrationData.step2?.businessName || '',
         business_category: registrationData.step2?.businessCategory || '',
         business_location: registrationData.step2?.businessLocation || '',
         business_type: registrationData.step2?.businessType || 'informal',
         number_of_employees: registrationData.step2?.numberOfEmployees || '',
         monthly_revenue: registrationData.step2?.monthlyRevenue || '',
-        years_in_operation: parseInt(registrationData.step2?.yearsInOperation, 10) || 0,
+        years_in_operation: parseInt(registrationData.step2?.yearsInOperation || '0', 10) || 0,
         beee_level: registrationData.step2?.beeeLevel || 'not_certified',
         selected_services: registrationData.step4?.selectedTypes || [],
         description: registrationData.step4?.description || ''
@@ -92,7 +92,7 @@ export const finalizeRegistration = async (registrationData: FullRegistrationDat
     }
 
     // 3. Create associated program applications (if any)
-    if (registrationData.step4?.selectedPrograms?.length > 0) {
+    if (registrationData.step4?.selectedPrograms && registrationData.step4.selectedPrograms.length > 0) {
         await createProgramApplications(result.id, submissionData, registrationData.step4.selectedPrograms);
     }
 

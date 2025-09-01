@@ -204,6 +204,7 @@ const BusinessRegistrationReview: React.FC = () => {
         ))}
       </div>
 
+
       {/* Search and Filters */}
       <div className="bg-gray-50 rounded-xl p-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
