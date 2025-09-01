@@ -16,7 +16,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { UserCog } from 'lucide-react';
 import AdminMobileNav from '../components/admin/AdminMobileNav';
-import logoSvg from "../assets/seventytwo-logo.svg";
+import logo from "../assets/SBSA Pic.png";
 
 const AdminLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const navigate = useNavigate();
@@ -81,17 +81,14 @@ const AdminLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           <div className="px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-4"> {/* Changed from space-x-2 to space-x-4 */}
                   <img
-                      src={logoSvg}
-                      alt="SeventyTwo X Logo"
-                      className="h-10 w-auto filter brightness-0 invert"
+                  src={logo}
+                  alt="Standard Bank Logo"
+                  className="h-10 w-auto"
                   />
-                  <span className="text-xl font-bold text-gray-900">SeventyTwo X Admin</span>
+                  <span className="text-xl font-bold text-gray-900">Standard Bank Program Admin</span>
                 </div>
-                <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">
-          Admin Panel
-        </span>
               </div>
 
               <div className="flex items-center space-x-4">

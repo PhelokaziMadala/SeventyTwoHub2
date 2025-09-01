@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, TrendingUp, Shield, AlertCircle, User, Phone } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import logoSvg from '../assets/seventytwo-logo.svg';
+import logo from "../assets/SBSA Pic.png";
 
 type FormMode = 'login' | 'signup';
 
@@ -369,15 +370,22 @@ const UnifiedLogin: React.FC = () => {
           <div className="bg-white/95 backdrop-blur-sm rounded-xl p-8 border border-white/20 shadow-2xl max-w-md w-full">
             {/* Logo and Title */}
             <div className="text-center mb-8">
-              <div className="flex items-center justify-center space-x-2 mb-4">
-                <TrendingUp className="w-8 h-8 text-primary-500" />
-                <span className="text-2xl font-bold text-gray-900">SeventyTwo X</span>
+              <div className="flex flex-col items-center justify-center mb-4">
+                <img
+                    src={logo}
+                    alt="Standard Bank Logo"
+                    className="h-10 w-auto mb-2"
+                />
+                <span className="text-xl font-bold text-gray-900">
+      Standard Bank Program Login
+    </span>
               </div>
               <h1 className="text-xl font-semibold text-gray-900 mb-2">
                 {formMode === 'login' ? 'Secure Sign In' : 'Create Account'}
               </h1>
               <p className="text-gray-600">Unified Access Portal</p>
             </div>
+
 
             {/* Global Error Display */}
             {errors.general && (
@@ -400,38 +408,6 @@ const UnifiedLogin: React.FC = () => {
                 </div>
               </div>
             )}
-
-            {/* Login/Signup Mode Toggle */}
-            <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
-              <button
-                type="button"
-                onClick={() => {
-                  setFormMode('login');
-                  resetForm();
-                }}
-                className={`flex-1 py-2 px-4 rounded-md transition-colors ${
-                  formMode === 'login' 
-                    ? 'bg-white text-primary-600 shadow-sm' 
-                    : 'text-gray-600'
-                }`}
-              >
-                <span className="font-medium">Sign In</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setFormMode('signup');
-                  resetForm();
-                }}
-                className={`flex-1 py-2 px-4 rounded-md transition-colors ${
-                  formMode === 'signup'
-                    ? 'bg-white text-primary-600 shadow-sm' 
-                    : 'text-gray-600'
-                }`}
-              >
-                <span className="font-medium">Sign Up</span>
-              </button>
-            </div>
 
             {/* Unified Form */}
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
